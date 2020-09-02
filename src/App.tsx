@@ -1,15 +1,27 @@
 import React from 'react';
-import './App.css';
-import { Button } from "antd";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import ListPage from './components/pages/ListPage';
+import DetailsPage from './components/pages/DetailsPage';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Button type="primary" className="my-button" onClick={() => null}>
-        Button
-      </Button>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/cities">
+          <ListPage />
+        </Route>
+        <Route path="/cities/:id">
+          <DetailsPage />
+        </Route>
+        <Redirect to="/cities" />
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
